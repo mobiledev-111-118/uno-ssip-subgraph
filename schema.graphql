@@ -1,0 +1,38 @@
+# It should be Mint event in RiskPool/UnoERC20?
+type Stake @entity {
+  id: ID!
+  transaction: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  staker: String!
+  pool: String!
+  amount: BigDecimal!
+}
+
+type Harvest @entity {
+  id: ID!
+  transaction: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  receiver: String!
+  amount: BigDecimal!
+}
+
+type Withdraw @entity {
+  id: ID!
+  transaction: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  user: String!
+  unoAmount: BigDecimal!
+}
+
+type Transaction @entity {
+  id: ID! #txn hash
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  from: String!
+  stakes: [Stake!]
+  harvests: [Harvest!]
+  withdraws: [Withdraw!]
+}

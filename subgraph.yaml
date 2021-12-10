@@ -1,0 +1,30 @@
+specVersion: 0.0.2
+description: UnoRe is a decentralized protocol for reinsurance.
+repository: https://github.com/snowwhitedev/staking-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SingleSidedInsurancePool
+    network: rinkeby
+    source:
+      address: '0xBf790c57Aa303e72c8E6D126729bfd3724BB4e63'
+      abi: SingleSidedInsurancePool
+      startBlock: 9768888
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ssip.ts
+      entities:
+        - Stake
+      abis:
+        - name: SingleSidedInsurancePool
+          file: ./abis/ssip.json
+      eventHandlers:
+        - event: StakedInPool(indexed address,indexed address,uint256)
+          handler: handleStakedInPool
+        - event: Harvest(indexed address,indexed address,uint256)
+          handler: handleHarvest
+        - event: LogLeaveFromPendingSSIP(indexed address,uint256,uint256)
+          handler: handleWithdraw
