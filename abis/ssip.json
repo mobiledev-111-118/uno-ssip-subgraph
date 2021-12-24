@@ -1,26 +1,10 @@
 [
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_claimAssessor",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_exchangeAgent",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_premiumPool",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "_owner", "type": "address" },
+      { "internalType": "address", "name": "_claimAssessor", "type": "address" },
+      { "internalType": "address", "name": "_exchangeAgent", "type": "address" },
+      { "internalType": "address", "name": "_premiumPool", "type": "address" }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -28,24 +12,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_receiver",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "_user", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "_receiver", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" }
     ],
     "name": "Harvest",
     "type": "event"
@@ -53,24 +22,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_staker",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_pool",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_requestAmount",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "_staker", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "_pool", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_requestAmount", "type": "uint256" }
     ],
     "name": "LeftPool",
     "type": "event"
@@ -78,107 +32,56 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_withdrawLpAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_withdrawUnoAmount",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "_user", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_withdrawLpAmount", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "_withdrawUnoAmount", "type": "uint256" }
     ],
-    "name": "LogLeaveFromPendingSSIP",
+    "name": "LogLeaveFromPendingSSRP",
     "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_exchangeAgent",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "_from", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "_to", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" }
     ],
+    "name": "LogLpTransferInSSRP",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "_exchangeAgent", "type": "address" }],
     "name": "LogSetExchangeAgent",
     "type": "event"
   },
   {
     "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_premiumPool",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "_premiumPool", "type": "address" }],
     "name": "LogSetPremiumPool",
     "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_mcr",
-        "type": "uint256"
-      }
+      { "indexed": false, "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "indexed": false, "internalType": "uint256", "name": "_mcr", "type": "uint256" }
     ],
     "name": "LogSetProtocolMCR",
     "type": "event"
   },
   {
     "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_rewarder",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "_rewarder", "type": "address" }],
     "name": "LogSetRewarder",
     "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint128",
-        "name": "_lastRewardBlock",
-        "type": "uint128"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_lpSupply",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_accUnoPerShare",
-        "type": "uint256"
-      }
+      { "indexed": false, "internalType": "uint128", "name": "_lastRewardBlock", "type": "uint128" },
+      { "indexed": false, "internalType": "uint256", "name": "_lpSupply", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "_accUnoPerShare", "type": "uint256" }
     ],
     "name": "LogUpdatePool",
     "type": "event"
@@ -186,18 +89,17 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_SSIP",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      }
+      { "indexed": true, "internalType": "address", "name": "_user", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_claimAmount", "type": "uint256" }
+    ],
+    "name": "PolicyClaim",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "_SSRP", "type": "address" },
+      { "indexed": false, "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" }
     ],
     "name": "ProtocolCreated",
     "type": "event"
@@ -205,37 +107,8 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_rewarder",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "RewarderInitialize",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_SSIP",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_pool",
-        "type": "address"
-      }
+      { "indexed": true, "internalType": "address", "name": "_SSRP", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "_pool", "type": "address" }
     ],
     "name": "RiskPoolCreated",
     "type": "event"
@@ -243,24 +116,9 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_staker",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_pool",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
+      { "indexed": true, "internalType": "address", "name": "_staker", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "_pool", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" }
     ],
     "name": "StakedInPool",
     "type": "event"
@@ -268,66 +126,26 @@
   {
     "inputs": [],
     "name": "ACC_UNO_PRECISION",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "LOCK_TIME",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_productType",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_premiumDescription",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_coverDuration",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_protocolAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_protocolCurrency",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "salesPolicyFactory",
-        "type": "address"
-      }
+      { "internalType": "string", "name": "_name", "type": "string" },
+      { "internalType": "string", "name": "_productType", "type": "string" },
+      { "internalType": "string", "name": "_premiumDescription", "type": "string" },
+      { "internalType": "uint256", "name": "_coverDuration", "type": "uint256" },
+      { "internalType": "address", "name": "_protocolAddress", "type": "address" },
+      { "internalType": "address", "name": "_protocolCurrency", "type": "address" },
+      { "internalType": "address", "name": "salesPolicyFactory", "type": "address" }
     ],
     "name": "addProtocol",
     "outputs": [],
@@ -337,63 +155,35 @@
   {
     "inputs": [],
     "name": "allProtocolsLength",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "cancelWithdrawRequest",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "claimAssessor",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_symbol",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_factory",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_currency",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_rewardMultiplier",
-        "type": "uint256"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "address", "name": "_premiumCurrency", "type": "address" }
+    ],
+    "name": "approvePremiumInPolicy",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "inputs": [], "name": "cancelWithdrawRequest", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [],
+    "name": "claimAssessor",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_name", "type": "string" },
+      { "internalType": "string", "name": "_symbol", "type": "string" },
+      { "internalType": "address", "name": "_factory", "type": "address" },
+      { "internalType": "address", "name": "_currency", "type": "address" },
+      { "internalType": "uint256", "name": "_rewardMultiplier", "type": "uint256" }
     ],
     "name": "createRiskPool",
     "outputs": [],
@@ -401,131 +191,46 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }],
     "name": "enterInPool",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "",
-        "type": "uint16"
-      }
-    ],
+    "inputs": [{ "internalType": "uint16", "name": "", "type": "uint16" }],
     "name": "getProtocol",
     "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "coverDuration",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "mcr",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "protocolAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "protocolCurrency",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "productType",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "premiumDescription",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "salesPolicy",
-        "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "exist",
-        "type": "bool"
-      }
+      { "internalType": "uint256", "name": "coverDuration", "type": "uint256" },
+      { "internalType": "uint256", "name": "mcr", "type": "uint256" },
+      { "internalType": "address", "name": "protocolAddress", "type": "address" },
+      { "internalType": "address", "name": "protocolCurrency", "type": "address" },
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "string", "name": "productType", "type": "string" },
+      { "internalType": "string", "name": "premiumDescription", "type": "string" },
+      { "internalType": "address", "name": "salesPolicy", "type": "address" },
+      { "internalType": "bool", "name": "exist", "type": "bool" }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      }
-    ],
+    "inputs": [{ "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" }],
     "name": "getProtocolData",
     "outputs": [
-      {
-        "internalType": "string",
-        "name": "protocolName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "productType",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "protocolAddress",
-        "type": "address"
-      }
+      { "internalType": "string", "name": "protocolName", "type": "string" },
+      { "internalType": "string", "name": "productType", "type": "string" },
+      { "internalType": "address", "name": "protocolAddress", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_to", "type": "address" }],
     "name": "getStakedAmountPerUser",
     "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "unoAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lpAmount",
-        "type": "uint256"
-      }
+      { "internalType": "uint256", "name": "unoAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "lpAmount", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -533,115 +238,32 @@
   {
     "inputs": [],
     "name": "getTotalWithdrawPendingAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "getWithdrawRequestPerUser",
     "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "pendingAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "pendingAmountInUno",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "originUnoAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "requestTime",
-        "type": "uint256"
-      }
+      { "internalType": "uint256", "name": "pendingAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "pendingAmountInUno", "type": "uint256" },
+      { "internalType": "uint256", "name": "originUnoAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "requestTime", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_to", "type": "address" }],
     "name": "harvest",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
+  { "inputs": [], "name": "leaveFromPending", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_rewarder",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "initialRewarder",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "lastWithdrawTime",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "leaveFromPending",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }],
     "name": "leaveFromPoolInPending",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -649,74 +271,41 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_isWithdraw",
-        "type": "bool"
-      }
+      { "internalType": "address", "name": "_from", "type": "address" },
+      { "internalType": "address", "name": "_to", "type": "address" },
+      { "internalType": "uint256", "name": "_amount", "type": "uint256" }
     ],
-    "name": "migrate",
+    "name": "lpTransfer",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
+  { "inputs": [], "name": "migrate", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [],
     "name": "migrateTo",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_to", "type": "address" }],
     "name": "pendingUno",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "pending",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [{ "internalType": "uint256", "name": "pending", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
+      { "internalType": "address", "name": "_to", "type": "address" },
+      { "internalType": "uint256", "name": "_amount", "type": "uint256" }
     ],
     "name": "policyClaim",
     "outputs": [],
@@ -727,21 +316,9 @@
     "inputs": [],
     "name": "poolInfo",
     "outputs": [
-      {
-        "internalType": "uint128",
-        "name": "lastRewardBlock",
-        "type": "uint128"
-      },
-      {
-        "internalType": "uint128",
-        "name": "accUnoPerShare",
-        "type": "uint128"
-      },
-      {
-        "internalType": "uint256",
-        "name": "unoMultiplierPerBlock",
-        "type": "uint256"
-      }
+      { "internalType": "uint128", "name": "lastRewardBlock", "type": "uint128" },
+      { "internalType": "uint128", "name": "accUnoPerShare", "type": "uint128" },
+      { "internalType": "uint256", "name": "unoMultiplierPerBlock", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -749,63 +326,43 @@
   {
     "inputs": [],
     "name": "premiumPool",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "rewarder",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "riskPool",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "_claimAssessor",
-        "type": "address"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "uint256", "name": "_maxDeadline", "type": "uint256" }
     ],
+    "name": "setBuyPolicyMaxDeadlineInPolicy",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_claimAssessor", "type": "address" }],
     "name": "setClaimAssessor",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_exchangeAgent",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_exchangeAgent", "type": "address" }],
     "name": "setExchangeAgent",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -813,16 +370,8 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      },
-      {
-        "internalType": "address",
-        "name": "_exchangeAgent",
-        "type": "address"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "address", "name": "_exchangeAgent", "type": "address" }
     ],
     "name": "setExchangeAgentInPolicy",
     "outputs": [],
@@ -830,39 +379,21 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_migrateTo",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_migrateTo", "type": "address" }],
     "name": "setMigrateTo",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_minLPCapital",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "_minLPCapital", "type": "uint256" }],
     "name": "setMinLPCapital",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_premiumPool",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_premiumPool", "type": "address" }],
     "name": "setPremiumPool",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -870,16 +401,8 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      },
-      {
-        "internalType": "address",
-        "name": "_premiumPool",
-        "type": "address"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "address", "name": "_premiumPool", "type": "address" }
     ],
     "name": "setPremiumPoolInPolicy",
     "outputs": [],
@@ -888,16 +411,8 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_mcr",
-        "type": "uint256"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "uint256", "name": "_mcr", "type": "uint256" }
     ],
     "name": "setProtocolMCR",
     "outputs": [],
@@ -906,16 +421,8 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_protocolIdx",
-        "type": "uint16"
-      },
-      {
-        "internalType": "string",
-        "name": "_uri",
-        "type": "string"
-      }
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "string", "name": "_uri", "type": "string" }
     ],
     "name": "setProtocolURIInPolicy",
     "outputs": [],
@@ -923,36 +430,39 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_rewardMultiplier",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [{ "internalType": "uint256", "name": "_rewardMultiplier", "type": "uint256" }],
     "name": "setRewardMultiplier",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_rewarder",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_rewarder", "type": "address" }],
     "name": "setRewarder",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "updatePool",
+    "inputs": [
+      { "internalType": "uint16", "name": "_protocolIdx", "type": "uint16" },
+      { "internalType": "address", "name": "_signer", "type": "address" }
+    ],
+    "name": "setSignerInPolicy",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "inputs": [], "name": "updatePool", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "userInfo",
+    "outputs": [
+      { "internalType": "uint256", "name": "lastWithdrawTime", "type": "uint256" },
+      { "internalType": "uint256", "name": "rewardDebt", "type": "uint256" },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

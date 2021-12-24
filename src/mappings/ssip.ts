@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { BigInt } from '@graphprotocol/graph-ts';
-import { StakedInPool, Harvest as HarvestEvent, LogLeaveFromPendingSSIP } from '../types/SingleSidedInsurancePool/SingleSidedInsurancePool'
+import { StakedInPool, Harvest as HarvestEvent, LogLeaveFromPendingSSRP } from '../types/SingleSidedReinsurancePool/SingleSidedReinsurancePool'
 import { Stake, Harvest, Withdraw, Transaction } from '../types/schema'
 import {convertTokenToDecimal, BI_18, ADDRESS_ZERO, ZERO_BD } from './helpers'
 
@@ -68,7 +68,7 @@ export function handleHarvest(event: HarvestEvent): void {
   transaction.save()
 }
 
-export function handleWithdraw(event: LogLeaveFromPendingSSIP): void {
+export function handleWithdraw(event: LogLeaveFromPendingSSRP): void {
   let transactionHash = event.transaction.hash.toHexString()
   let transaction = Transaction.load(transactionHash)
   if (transaction === null) {
