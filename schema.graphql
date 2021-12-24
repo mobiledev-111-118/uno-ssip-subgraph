@@ -9,6 +9,16 @@ type Stake @entity {
   amount: BigDecimal!
 }
 
+type WithdrawRequest @entity {
+  id: ID!
+  transaction: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  staker: String!
+  pool: String!
+  requestAmount: BigDecimal!
+}
+
 type Harvest @entity {
   id: ID!
   transaction: String!
@@ -35,4 +45,5 @@ type Transaction @entity {
   stakes: [Stake!]
   harvests: [Harvest!]
   withdraws: [Withdraw!]
+  withdrawRequests: [WithdrawRequest!]
 }

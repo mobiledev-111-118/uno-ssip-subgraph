@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { BigInt } from '@graphprotocol/graph-ts';
-import { StakedInPool, Harvest as HarvestEvent, LogLeaveFromPendingSSRP } from '../types/SingleSidedReinsurancePool/SingleSidedReinsurancePool'
-import { Stake, Harvest, Withdraw, Transaction } from '../types/schema'
+import { StakedInPool, LeftPool, Harvest as HarvestEvent, LogLeaveFromPendingSSRP } from '../types/SingleSidedReinsurancePool/SingleSidedReinsurancePool'
+import { Stake, Harvest, Withdraw, Transaction, WithdrawRequest } from '../types/schema'
 import {convertTokenToDecimal, BI_18, ADDRESS_ZERO, ZERO_BD } from './helpers'
 
 export function handleStakedInPool(event: StakedInPool): void {
@@ -15,6 +15,7 @@ export function handleStakedInPool(event: StakedInPool): void {
     transaction.stakes = []
     transaction.harvests = []
     transaction.withdraws = []
+    transaction.withdrawRequests = []
   }
 
   let staker = event.params._staker.toHexString()
@@ -48,6 +49,7 @@ export function handleHarvest(event: HarvestEvent): void {
     transaction.stakes = []
     transaction.harvests = []
     transaction.withdraws = []
+    transaction.withdrawRequests = []
   }
 
   let receviver = event.params._receiver.toHexString()
@@ -79,6 +81,7 @@ export function handleWithdraw(event: LogLeaveFromPendingSSRP): void {
     transaction.stakes = []
     transaction.harvests = []
     transaction.withdraws = []
+    transaction.withdrawRequests = []
   }
 
   let user = event.params._user.toHexString()
@@ -96,5 +99,39 @@ export function handleWithdraw(event: LogLeaveFromPendingSSRP): void {
 
   withdraws.push(withdraw.id)
   transaction.withdraws = withdraws
+  transaction.save()
+}
+
+export function handleWithdrawRequest(event: LeftPool): void {
+  let transactionHash = event.transaction.hash.toHexString()
+  let transaction = Transaction.load(transactionHash)
+  if (transaction === null) {
+    transaction = new Transaction(transactionHash)
+    transaction.blockNumber = event.block.number
+    transaction.timestamp = event.block.timestamp
+    transaction.from = event.transaction.from.toHexString()
+    transaction.stakes = []
+    transaction.harvests = []
+    transaction.withdraws = []
+    transaction.withdrawRequests = []
+  }
+
+  let user = event.params._staker.toHexString()
+  let pool = event.params._pool.toHexString()
+  let value = convertTokenToDecimal(event.params._requestAmount, BI_18)
+
+  let withdrawRequests = transaction.withdrawRequests
+  let withdrawRequest = new WithdrawRequest(transactionHash.concat('-').concat(BigInt.fromI32(withdrawRequests.length).toString())) as WithdrawRequest
+
+  withdrawRequest.transaction = transactionHash
+  withdrawRequest.blockNumber = event.block.number
+  withdrawRequest.timestamp = event.block.timestamp
+  withdrawRequest.staker = user
+  withdrawRequest.pool = pool
+  withdrawRequest.requestAmount = value
+  withdrawRequest.save()
+
+  withdrawRequests.push(withdrawRequest.id)
+  transaction.withdrawRequests = withdrawRequests
   transaction.save()
 }

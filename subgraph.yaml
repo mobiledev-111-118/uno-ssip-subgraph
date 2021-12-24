@@ -24,6 +24,8 @@ dataSources:
       eventHandlers:
         - event: StakedInPool(indexed address,indexed address,uint256)
           handler: handleStakedInPool
+        - event: LeftPool(indexed address,indexed address,uint256)
+          handler: handleWithdrawRequest
         - event: Harvest(indexed address,indexed address,uint256)
           handler: handleHarvest
         - event: LogLeaveFromPendingSSRP(indexed address,uint256,uint256)
